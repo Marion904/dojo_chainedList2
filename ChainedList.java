@@ -158,7 +158,6 @@ public class ChainedList<T>  implements Iterable<T>, Comparator<T>{
 		final boolean empty = this.isEmpty();
 		return new Iterator<T> (){
 			
-			
 			@Override
 			public boolean hasNext() {
 				return(!empty && pointer!=null && pointer.getNext()!=null);	
@@ -174,7 +173,8 @@ public class ChainedList<T>  implements Iterable<T>, Comparator<T>{
 					throw new NoSuchElementException();
 				}
 				
-				return pointer.getNext().getData();		
+				pointer = pointer.getNext();
+				return pointer.getData();		
 			}
 			
 		};
