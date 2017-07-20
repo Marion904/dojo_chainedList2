@@ -34,23 +34,7 @@ public class ChainedTest {
 		assertEquals("ABCDE", sb.toString());
 	
     }
-	/**
 	
-	@Test
-	public void testEmpty() throws Exception {
-		ChainedList<String> c = new ChainedList<>();
-		assertTrue(c.isEmpty());
-		
-		c.add("A");
-		c.add("B");
-		c.add("C");
-		c.add("D");
-		c.add("E");
-		
-		c.empty();
-		assertTrue(c.isEmpty());		
-	}
-	*/
 	@Test
 	public void testEmpty() throws Exception {
 		ChainedList<String> chain = new ChainedList<>();
@@ -61,9 +45,10 @@ public class ChainedTest {
 		chain.add("C");
 		chain.add("D");
 		chain.add("E");
-		
+		assertFalse(chain.isEmpty());
 		chain.empty();	
 		assertTrue(chain.isEmpty());
+		System.out.println("testEmpty_ok");
 	}
 	
 	
@@ -88,6 +73,8 @@ public class ChainedTest {
 			ptr = ptr.getNext();
 		}
 		assertEquals("ABD", sb.toString());
+		System.out.println("testRemove_ok");
+
     }
 
 	@Test
@@ -107,12 +94,15 @@ public class ChainedTest {
 			ptr = ptr.getNext();
 		}
 		assertEquals("BACD", sb.toString());
+		System.out.println("testInsert_ok");
+
     }
 	
 	@Test
 	public void testIterator() throws Exception{
 		ChainedList<String> chain = new ChainedList<>();
 		assertTrue(chain.isEmpty());
+		StringBuilder sb = new StringBuilder();
 		
 		chain.add("A");
 		chain.add("B");
@@ -121,35 +111,14 @@ public class ChainedTest {
 		chain.add("E");
 		
 		for(String s : chain){
-			System.out.println(s);
+			sb.append(s);
 		}
+		assertEquals("ABCDE",sb.toString());
+		System.out.println("testIterator_ok");
+
 		
 	}
-    /*	
-	@Test(expected=IndexOutOfBoundsException.class)
-    public void testRemoveOutOfBound() throws Exception {
 
-		ChainedList<String> chain = new ChainedList<>();
-		chain.add("A");
-		chain.add("B");
-		chain.add("C");
-		chain.add("D");
-		chain.add("E");
-
-		chain.remove(7);
-    }
-	
-	@Test(expected=IndexOutOfBoundsException.class)
-    public void testAddOutOfBound() throws Exception {
-
-		ChainedList<String> chain = new ChainedList<>();
-		chain.add("A");
-		chain.add("B");
-		chain.add("C");
-		chain.add("D");
-		chain.add("E", 7);
-    }
-    */
 	
 	@Test()
     public void testRemoveUntilEmpty() throws Exception {

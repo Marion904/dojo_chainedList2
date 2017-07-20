@@ -110,7 +110,6 @@ public class ChainedList<T>  implements Iterable<T>, Comparator<T>{
 			throw new IndexOutOfBoundsException();
 		}
 		while(this.head!=null){
-			System.out.print(this.head.getData());	
 			this.remove(0);
 		}
 	}
@@ -160,20 +159,16 @@ public class ChainedList<T>  implements Iterable<T>, Comparator<T>{
 			
 			@Override
 			public boolean hasNext() {
-				return(!empty && pointer!=null && pointer.getNext()!=null);	
+				return((pointer == null && !empty) || pointer.getNext()!=null);	
 			}
 
 			@Override
 			public T next() {	
 				if(pointer==null){
 					pointer=firstItem;
+				}else{
+					pointer = pointer.getNext();
 				}
-					
-				if (empty || pointer.getNext()==null)  {
-					throw new NoSuchElementException();
-				}
-				
-				pointer = pointer.getNext();
 				return pointer.getData();		
 			}
 			
